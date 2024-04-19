@@ -1,0 +1,53 @@
+<h5 class="mb-2">Cadastro de Produtos</h5>
+<div *ngIf="mensagem != ''" class="alert alert-primary alert-dismissible fade show" role="alert">
+  <strong>{{mensagem}}</strong>
+  <button type="button" class="btn-close" aria-label="Close" (click)="mensagem = ''"></button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="nome" class="form-label">Nome do Produto</label>
+    <input type="text" class="form-control" formControlName="nome" placeholder="Digite o nome do produto" />
+      <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+          Por favor, informe o nome do produto com pelo menos 8 caracteres.
+      </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="preco" class="form-label">Preço</label>
+    <input type="number" class="form-control" formControlName="preco" placeholder="Digite o preço do produto" />
+      <div class="text-danger" *ngIf="f['preco'].touched && f['preco'].invalid">
+          Por favor, informe o preço do produto com valor maior ou igual a 1.
+      </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="quantidade" class="form-label">Quantidade</label>
+    <input type="number" class="form-control" formControlName="quantidade" placeholder="Digite a quantidade do produto" />
+      <div class="text-danger" *ngIf="f['quantidade'].touched && f['quantidade'].invalid">
+        Por favor, informe a quantidade do produto com valor maior ou igual a zero.
+      </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="fornecedor" class="form-label">Fornecedor</label>
+    
+    <select class="form-select" formControlName="fornecedorId">
+      <option value="">Selecione o fornecedor</option>
+      <option *ngFor="let f of fornecedores" value="{{f.id}}">
+        {{f.razaoSocial | uppercase}} | CNPJ: {{f.cnpj}}
+      </option>
+    </select>
+
+    <div class="text-danger" *ngIf="f['fornecedorId'].touched && f['fornecedorId'].invalid" >
+        Por favor, selecione o fornecedor desejado para o produto.
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-success">Cadastrar Produto</button>
+</form>
+
+
+
+

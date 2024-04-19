@@ -1,0 +1,59 @@
+<h5 class="mb-2">Criar usuário</h5>
+<p>Preencha os campos abaixo para criar sua conta de usuário.</p>
+
+
+<div class="mb-3 text-danger">
+    <ul>
+        <li *ngFor="let e of erros">
+            <strong>{{e}}</strong>
+        </li>
+    </ul>
+</div>
+
+
+<div class="mb-3 text-success">
+    <strong>{{mensagem}}</strong>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label>Nome do usuário</label>
+            <input type="text" class="form-control" formControlName="nome"/>
+            <div *ngIf="f['nome'].touched && f['nome'].invalid" class="text-danger">
+                Por favor, informe o nome do usuário de 8 a 100 caracteres.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Email do usuário:</label>
+            <input type="text" class="form-control" formControlName="email"/>
+            <div *ngIf="f['email'].touched && f['email'].invalid" class="text-danger">
+                Por favor, informe um endereço de email válido.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>Senha de acesso:</label>
+            <input type="password" class="form-control" formControlName="senha"/>
+            <div *ngIf="f['senha'].touched && f['senha'].invalid" class="text-danger">
+                Por favor, informe a senha com letras maiúsculas, minúsculas, números,
+                símbolos e pelo menos 8 caracteres.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <input type="submit"
+                class="btn btn-success"
+                value="Realizar Cadastro"
+                [disabled]="form.invalid"
+            />
+        </div>
+    </div>
+
+
+</form>

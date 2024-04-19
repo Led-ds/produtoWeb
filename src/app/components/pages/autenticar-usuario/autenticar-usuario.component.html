@@ -1,0 +1,37 @@
+<h5 class="mb-2">Autenticar usuário</h5>
+<p>Entre com as suas credenciais de acesso.</p>
+
+<div class="mb-3 text-danger">
+    <ul>
+        <li *ngFor="let e of erros">
+            <strong>{{e}}</strong>
+        </li>
+    </ul>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <div class="row mb-3">      
+        <div class="col-md-4">
+            <label>Email de acesso:</label>
+            <input formControlName="email" type="text" class="form-control"/>
+        </div>
+        <div class="col-md-4">
+            <label>Senha de acesso:</label>
+            <input formControlName="senha" type="password" class="form-control"/>
+        </div>
+    </div>
+
+
+    <div class="col-md-12">
+        <input type="submit"
+            class="btn btn-primary"
+            value="Acessar Sistema"
+            [disabled]="form.invalid"
+            />
+    </div>
+
+
+
+</form>
